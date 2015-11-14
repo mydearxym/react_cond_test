@@ -90,6 +90,14 @@
 	  );
 	};
 
+	var NotFound = function NotFound() {
+	  return _react2.default.createElement(
+	    'h5',
+	    null,
+	    'NotFound'
+	  );
+	};
+
 	var ExampleApplication = (function (_React$Component) {
 	  _inherits(ExampleApplication, _React$Component);
 
@@ -104,15 +112,12 @@
 	    return _this;
 	  }
 
-	  // {[ x => x > 0, <Positive /> ]}
-	  // {[ x => x < 0, <Negative /> ]}
+	  // <Default><Zero/></Default>
 
+	  // this cause a error !
 	  // <Clause test={x => x > 0}> <Positive /> </Clause>
-	  // <Clause test={x => x == 0}> <span>0</span> </Clause>
 	  // <Clause test={x => x < 0}> <Negative /> </Clause>
-	  // {[ x => x > 0, <Positive key={0} /> ]}
-	  // {[ x => x == 0, <Zero key={1} /> ]}
-	  // {[ x => x < 0, <Negative key={2}/> ]}
+	  // <Clause test={x => x == 0}> <Zero /> </Clause>
 
 	  _createClass(ExampleApplication, [{
 	    key: 'render',
@@ -120,33 +125,15 @@
 	      return _react2.default.createElement(
 	        _reactCond.Cond,
 	        { value: this.state.test },
-	        _react2.default.createElement(
-	          _reactCond.Clause,
-	          { test: function test(x) {
-	              return x > 0;
-	            } },
-	          ' ',
-	          _react2.default.createElement(Positive, null),
-	          ' '
-	        ),
-	        _react2.default.createElement(
-	          _reactCond.Clause,
-	          { test: function test(x) {
-	              return x == 0;
-	            } },
-	          ' ',
-	          _react2.default.createElement(Zero, null),
-	          ' '
-	        ),
-	        _react2.default.createElement(
-	          _reactCond.Clause,
-	          { test: function test(x) {
-	              return x < 0;
-	            } },
-	          ' ',
-	          _react2.default.createElement(Negative, null),
-	          ' '
-	        )
+	        [function (x) {
+	          return x > 0;
+	        }, _react2.default.createElement(Positive, { key: 0 })],
+	        [function (x) {
+	          return x == 0;
+	        }, _react2.default.createElement(Zero, { key: 1 })],
+	        [function (x) {
+	          return x < 0;
+	        }, _react2.default.createElement(Negative, { key: 2 })]
 	      );
 	    }
 	  }]);
